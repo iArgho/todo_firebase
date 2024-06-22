@@ -1,6 +1,6 @@
 {
-    "name": "live_score_firebase",
-    "short_name": "live_score_firebase",
+    "name": "todo_firebase",
+    "short_name": "todo_firebase",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
