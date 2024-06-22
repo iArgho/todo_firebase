@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Hello World App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -29,10 +30,10 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hello World App'),
+        title: const Text('Todo App'),
       ),
       body: const Center(
-        child: Text('Hello, World!'),
+        child: Text('Todo App'),
       ),
     );
   }
