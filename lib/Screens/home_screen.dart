@@ -8,10 +8,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _personal = true, _private = false;
+  bool _personal = true, _private = false, _suggest = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.greenAccent.shade400,
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 40,
+        ),
+      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -28,16 +41,15 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  child: Text(
-                    'Todo',
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black),
+                const Text(
+                  'Todo',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -51,14 +63,16 @@ class _MyHomePageState extends State<MyHomePage> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 5),
                               decoration: BoxDecoration(
-                                  color: Colors.lightBlueAccent,
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Text(
+                                color: Colors.lightBlueAccent,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: const Text(
                                 'Personal',
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           )
@@ -68,12 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
                               _private = false;
                               setState(() {});
                             },
-                            child: Text(
+                            child: const Text(
                               'Personal',
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                     _private
@@ -84,14 +99,16 @@ class _MyHomePageState extends State<MyHomePage> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 5),
                               decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 57, 254, 169),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Text(
+                                color: const Color.fromARGB(255, 57, 254, 169),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: const Text(
                                 'Private',
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           )
@@ -101,15 +118,53 @@ class _MyHomePageState extends State<MyHomePage> {
                               _private = true;
                               setState(() {});
                             },
-                            child: Text(
-                              'Personal',
+                            child: const Text(
+                              'Private',
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                   ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                CheckboxListTile(
+                  activeColor: Colors.greenAccent.shade400,
+                  title: const Text(
+                    'Task 1',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  value: _suggest,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _suggest = newValue!;
+                    });
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
+                CheckboxListTile(
+                  activeColor: Colors.greenAccent.shade400,
+                  title: const Text(
+                    'Task 2',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  value: _suggest,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _suggest = newValue!;
+                    });
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
                 ),
               ],
             ),
