@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_firebase/Screens/todo_task_dialog.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -15,7 +16,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.greenAccent.shade400,
-        onPressed: () {},
+        onPressed: () {
+          openBox(context);
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
         ),
@@ -171,6 +174,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+    );
+  }
+
+  void openBox(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => TodoTaskDialog(),
     );
   }
 }
