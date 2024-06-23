@@ -152,23 +152,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   controlAffinity: ListTileControlAffinity.leading,
                 ),
-                CheckboxListTile(
-                  activeColor: Colors.greenAccent.shade400,
-                  title: const Text(
-                    'Task 2',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  value: _suggest,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _suggest = newValue!;
-                    });
-                  },
-                  controlAffinity: ListTileControlAffinity.leading,
-                ),
               ],
             ),
           ),

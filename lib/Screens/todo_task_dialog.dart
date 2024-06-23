@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TodoTaskDialog extends StatelessWidget {
+  const TodoTaskDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -18,7 +20,7 @@ class TodoTaskDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Add Todo Task',
                   style: TextStyle(
                     color: Colors.black,
@@ -30,18 +32,18 @@ class TodoTaskDialog extends StatelessWidget {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(Icons.cancel_rounded, color: Colors.red),
+                  child: const Icon(Icons.cancel_rounded, color: Colors.red),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: TextField(
+              child: const TextField(
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter your task here',
@@ -55,14 +57,14 @@ class TodoTaskDialog extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Handle button press
               },
-              child: Text('Add Task'),
+              child: const Text('Add Task'),
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
