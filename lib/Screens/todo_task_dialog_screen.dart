@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
+import 'package:todo_firebase/Database%20Service/database_service.dart';
 
 class TodoTaskDialog extends StatelessWidget {
   TodoTaskDialog({super.key});
-  final TextEditingController _textTEController = TextEditingController();
+  TextEditingController _textTEController = TextEditingController();
+  bool _personal = true;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +64,16 @@ class TodoTaskDialog extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                String id = randomAlphaNumeric(10);
+                Map<String, dynamic> userTodo = {
+                  "task": _textTEController.text,
+                  "Id": id,
+                };
+
+                DatabaseService().addPersonalTask(userTodo, id);
+                Navigator.pop(context);
+              },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 shape: RoundedRectangleBorder(
