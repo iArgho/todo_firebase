@@ -32,13 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.white, Colors.white30, Colors.white12],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
+          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -163,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void openBox(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) => const TodoTaskDialog(),
+      builder: (context) => TodoTaskDialog(),
     );
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TodoTaskDialog extends StatelessWidget {
-  const TodoTaskDialog({super.key});
+  TodoTaskDialog({super.key});
+  final TextEditingController _textTEController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +44,9 @@ class TodoTaskDialog extends StatelessWidget {
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const TextField(
-                decoration: InputDecoration(
+              child: TextField(
+                controller: _textTEController,
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter your task here',
                   hintStyle: TextStyle(
@@ -52,16 +54,14 @@ class TodoTaskDialog extends StatelessWidget {
                   ),
                 ),
                 maxLines: 10,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 15.0,
                 ),
               ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Handle button press
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 shape: RoundedRectangleBorder(
