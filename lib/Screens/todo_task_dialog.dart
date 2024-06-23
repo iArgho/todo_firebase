@@ -7,7 +7,7 @@ class TodoTaskDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(15),
       ),
       elevation: 10,
       backgroundColor: Colors.white,
@@ -48,7 +48,7 @@ class TodoTaskDialog extends StatelessWidget {
                   border: InputBorder.none,
                   hintText: 'Enter your task here',
                   hintStyle: TextStyle(
-                    fontSize: 15.0,
+                    fontSize: 20.0,
                   ),
                 ),
                 maxLines: 10,
@@ -63,12 +63,15 @@ class TodoTaskDialog extends StatelessWidget {
                 // Handle button press
               },
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 5),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              child: const Text('Add Task'),
+              child: const Text(
+                'Add Task',
+                style: TextStyle(fontSize: 17),
+              ),
             ),
           ],
         ),
