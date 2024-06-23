@@ -51,7 +51,7 @@ class TodoTaskDialog extends StatelessWidget {
                     fontSize: 15.0,
                   ),
                 ),
-                maxLines: 3,
+                maxLines: 10,
                 style: TextStyle(
                   fontSize: 15.0,
                 ),
@@ -62,13 +62,13 @@ class TodoTaskDialog extends StatelessWidget {
               onPressed: () {
                 // Handle button press
               },
-              child: const Text('Add Task'),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              child: const Text('Add Task'),
             ),
           ],
         ),
