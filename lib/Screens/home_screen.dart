@@ -9,7 +9,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _personal = true, _private = false, _suggest = false;
+  bool _personal = true, _official = false, _suggest = false;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         : GestureDetector(
                             onTap: () {
                               _personal = true;
-                              _private = false;
+                              _official = false;
                               setState(() {});
                             },
                             child: const Text(
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ),
                           ),
-                    _private
+                    _official
                         ? Material(
                             elevation: 5,
                             borderRadius: BorderRadius.circular(5),
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: const Text(
-                                'Private',
+                                'Official',
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 15,
@@ -112,11 +112,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         : GestureDetector(
                             onTap: () {
                               _personal = false;
-                              _private = true;
+                              _official = true;
                               setState(() {});
                             },
                             child: const Text(
-                              'Private',
+                              'Official',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,
