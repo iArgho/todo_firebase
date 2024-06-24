@@ -5,7 +5,7 @@ import 'package:todo_firebase/Database%20Service/database_service.dart';
 class TodoTaskDialog extends StatelessWidget {
   TodoTaskDialog({super.key});
   TextEditingController _textTEController = TextEditingController();
-  bool _personal = true;
+  String? _tasktype;
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +66,17 @@ class TodoTaskDialog extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 String id = randomAlphaNumeric(10);
+
                 Map<String, dynamic> userTodo = {
                   "task": _textTEController.text,
                   "Id": id,
                 };
 
-                DatabaseService().addPersonalTask(userTodo, id);
+                if (_tasktype == "Personal") {
+                  DatabaseService().addPersonalTask(userTodo, id);
+                } else {
+                  DatabaseService().addOfficialTask(userTodo, id);
+                }
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
