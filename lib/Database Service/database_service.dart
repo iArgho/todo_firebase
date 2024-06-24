@@ -16,4 +16,8 @@ class DatabaseService {
         .doc(id)
         .set(userOfficialMap);
   }
+
+  Future<Stream<QuerySnapshot>> getTask(String task) async {
+    return await FirebaseFirestore.instance.collection(task).snapshots();
+  }
 }

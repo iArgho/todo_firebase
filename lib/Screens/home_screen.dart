@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_firebase/Database%20Service/database_service.dart';
 import 'package:todo_firebase/Screens/todo_task_dialog_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -10,6 +12,50 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool _personal = true, _official = false, _suggest = false;
+  Stream<QuerySnapshot>? todoStream;
+
+  loadTask() async {
+    todoStream =
+        await DatabaseService().getTask(_personal ? "Personal" : "Official");
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadTask();
+  }
+
+  Widget getTask() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: todoStream,
+      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasData) {
+          return Expanded(
+            child: ListView.builder(
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                DocumentSnapshot docSnap = snapshot.data!.docs[index];
+                return CheckboxListTile(
+                  activeColor: Colors.greenAccent.shade400,
+                  title: Text(docSnap["task"]),
+                  value: _suggest,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _suggest = newValue!;
+                    });
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
+                );
+              },
+            ),
+          );
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,9 +120,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           )
                         : GestureDetector(
-                            onTap: () {
+                            onTap: () async {
                               _personal = true;
                               _official = false;
+                              await loadTask();
                               setState(() {});
                             },
                             child: const Text(
@@ -110,9 +157,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           )
                         : GestureDetector(
-                            onTap: () {
+                            onTap: () async {
                               _personal = false;
                               _official = true;
+                              await loadTask();
                               setState(() {});
                             },
                             child: const Text(
@@ -129,23 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(
                   height: 20,
                 ),
-                CheckboxListTile(
-                  activeColor: Colors.greenAccent.shade400,
-                  title: const Text(
-                    'Task 1',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  value: _suggest,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _suggest = newValue!;
-                    });
-                  },
-                  controlAffinity: ListTileControlAffinity.leading,
-                ),
+                getTask(),
               ],
             ),
           ),
