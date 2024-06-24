@@ -18,6 +18,6 @@ class DatabaseService {
   }
 
   Future<Stream<QuerySnapshot>> getTask(String task) async {
-    return await FirebaseFirestore.instance.collection(task).snapshots();
+    return FirebaseFirestore.instance.collection(task).snapshots();
   }
 }

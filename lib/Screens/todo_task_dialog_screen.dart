@@ -72,11 +72,12 @@ class TodoTaskDialog extends StatelessWidget {
                   "Id": id,
                 };
 
-                if (_tasktype == "Personal") {
+                if (_tasktype == "Official") {
                   DatabaseService().addPersonalTask(userTodo, id);
                 } else {
                   DatabaseService().addOfficialTask(userTodo, id);
                 }
+
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
