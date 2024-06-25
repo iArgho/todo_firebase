@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:todo_firebase/Database%20Service/database_service.dart';
 import 'package:todo_firebase/Screens/todo_task_dialog_screen.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<HomeScreen> {
   bool _personal = true, _official = false, _suggest = false;
   Stream<QuerySnapshot>? todoStream;
 
