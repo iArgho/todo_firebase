@@ -24,10 +24,8 @@ class TaskList extends StatelessWidget {
                 return CheckboxListTile(
                   activeColor: Colors.greenAccent.shade400,
                   title: Text(docSnap["task"]),
-                  value: false, // Default value or fetched from the document
-                  onChanged: (newValue) {
-                    // Update the state or document based on the new value
-                  },
+                  value: false,
+                  onChanged: (newValue) {},
                   controlAffinity: ListTileControlAffinity.leading,
                   secondary: IconButton(
                     icon: const Icon(
@@ -48,7 +46,9 @@ class TaskList extends StatelessWidget {
             ),
           );
         } else {
-          return const CircularProgressIndicator();
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
       },
     );

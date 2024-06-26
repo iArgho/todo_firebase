@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todo_firebase/Widgets/task_list.dart';
+import 'package:todo_firebase/Widgets/task_list_widget.dart';
 import 'package:todo_firebase/Database%20Service/database_service.dart';
 import 'package:todo_firebase/Screens/todo_task_dialog_screen.dart';
 
