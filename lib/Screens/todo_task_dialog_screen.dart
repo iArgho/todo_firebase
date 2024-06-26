@@ -68,7 +68,6 @@ class TodoTaskDialog extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     String id = randomAlphaNumeric(10);
-                    String _selectedTaskType = "Personal";
 
                     Map<String, dynamic> userTodo = {
                       "task": _textTEController.text,
@@ -99,7 +98,6 @@ class TodoTaskDialog extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     String id = randomAlphaNumeric(10);
-                    String _selectedTaskType = "Official";
 
                     Map<String, dynamic> userTodo = {
                       "task": _textTEController.text,

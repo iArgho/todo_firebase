@@ -46,10 +46,27 @@ class _MyHomePageState extends State<HomeScreen> {
                     });
                   },
                   controlAffinity: ListTileControlAffinity.leading,
+                  secondary: IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                    onPressed: () {
+                      // Handle the delete action here
+                    },
+                  ),
                 );
               },
             ),
           );
+
+// Add the _deleteTask method to handle the deletion
+          void _deleteTask(String docId) {
+            FirebaseFirestore.instance
+                .collection('yourCollectionName')
+                .doc(docId)
+                .delete();
+          }
         } else {
           return const CircularProgressIndicator();
         }
