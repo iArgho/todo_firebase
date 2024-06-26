@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todo_firebase/Widgets/task_list_widget.dart';
 import 'package:todo_firebase/Database%20Service/database_service.dart';
 import 'package:todo_firebase/Screens/todo_task_dialog_screen.dart';
+import 'package:todo_firebase/Widgets/official_task_widget.dart';
+import 'package:todo_firebase/Widgets/personal_task_widget.dart';
+import 'package:todo_firebase/Widgets/task_list_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _personal = true, _official = false;
+  bool _personal = true;
   Stream<QuerySnapshot>? todoStream;
 
   loadTask() async {
@@ -68,80 +70,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _personal
-                        ? Material(
-                            elevation: 5,
-                            borderRadius: BorderRadius.circular(5),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              decoration: BoxDecoration(
-                                color: Colors.lightBlueAccent,
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: const Text(
-                                'Personal',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          )
-                        : GestureDetector(
-                            onTap: () async {
-                              _personal = true;
-                              _official = false;
-                              await loadTask();
-                              setState(() {});
-                            },
-                            child: const Text(
-                              'Personal',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                    _official
-                        ? Material(
-                            elevation: 5,
-                            borderRadius: BorderRadius.circular(5),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 57, 254, 169),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: const Text(
-                                'Official',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          )
-                        : GestureDetector(
-                            onTap: () async {
-                              _personal = false;
-                              _official = true;
-                              await loadTask();
-                              setState(() {});
-                            },
-                            child: const Text(
-                              'Official',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
+                    PersonalTaskWidget(
+                      isSelected: _personal,
+                      onTap: () async {
+                        _personal = true;
+                        await loadTask();
+                      },
+                    ),
+                    OfficialTaskWidget(
+                      isSelected: !_personal,
+                      onTap: () async {
+                        _personal = false;
+                        await loadTask();
+                      },
+                    ),
                   ],
                 ),
                 const SizedBox(
