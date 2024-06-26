@@ -1,5 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:todo_firebase/Widgets/task_list.dart';
 import 'package:todo_firebase/Database%20Service/database_service.dart';
 import 'package:todo_firebase/Screens/todo_task_dialog_screen.dart';
 
@@ -7,11 +8,11 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<HomeScreen> {
-  bool _personal = true, _official = false, _suggest = false;
+class _HomeScreenState extends State<HomeScreen> {
+  bool _personal = true, _official = false;
   Stream<QuerySnapshot>? todoStream;
 
   loadTask() async {
@@ -24,107 +25,6 @@ class _MyHomePageState extends State<HomeScreen> {
   void initState() {
     super.initState();
     loadTask();
-  }
-
-  Widget getTask() {
-    return StreamBuilder<QuerySnapshot>(
-      stream: todoStream,
-      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasData) {
-          return Expanded(
-            child: ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                DocumentSnapshot docSnap = snapshot.data!.docs[index];
-                return CheckboxListTile(
-                  activeColor: Colors.greenAccent.shade400,
-                  title: Text(docSnap["task"]),
-                  value: _suggest,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _suggest = newValue!;
-                    });
-                  },
-                  controlAffinity: ListTileControlAffinity.leading,
-                  secondary: IconButton(
-                    icon: const Icon(
-                      Icons.delete,
-                      color: Colors.red,
-                    ),
-                    onPressed: () {
-                      _showDeleteConfirmationDialog(context, docSnap.id);
-                    },
-                  ),
-                );
-              },
-            ),
-          );
-        } else {
-          return const CircularProgressIndicator();
-        }
-      },
-    );
-  }
-
-  void _showDeleteConfirmationDialog(BuildContext context, String docId) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Delete Confirmation'),
-          content: const Text('Are you sure you want to delete this item?'),
-          actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(); // Close the dialog
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const Text(
-                      'Cancel',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(); // Close the dialog
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const Text(
-                      'Delete',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -247,7 +147,9 @@ class _MyHomePageState extends State<HomeScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                getTask(),
+                TaskList(
+                  todoStream: todoStream,
+                ),
               ],
             ),
           ),
