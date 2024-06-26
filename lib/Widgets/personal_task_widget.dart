@@ -5,10 +5,10 @@ class PersonalTaskWidget extends StatelessWidget {
   final Function() onTap;
 
   const PersonalTaskWidget({
-    Key? key,
+    super.key,
     required this.isSelected,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

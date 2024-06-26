@@ -21,13 +21,13 @@ class TaskList extends StatelessWidget {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
                 DocumentSnapshot docSnap = snapshot.data!.docs[index];
-                return CheckboxListTile(
-                  activeColor: Colors.greenAccent.shade400,
-                  title: Text(docSnap["task"]),
-                  value: false,
-                  onChanged: (newValue) {},
-                  controlAffinity: ListTileControlAffinity.leading,
-                  secondary: IconButton(
+                return ListTile(
+                  tileColor: Colors.greenAccent.shade400,
+                  title: Text(
+                    "  " + docSnap["task"],
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  trailing: IconButton(
                     icon: const Icon(
                       Icons.delete,
                       color: Colors.red,
