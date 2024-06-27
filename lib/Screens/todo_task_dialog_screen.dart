@@ -73,9 +73,7 @@ class TodoTaskDialog extends StatelessWidget {
                       "task": _textTEController.text,
                       "Id": id,
                     };
-
                     DatabaseService().addPersonalTask(userTodo, id);
-
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
@@ -103,9 +101,7 @@ class TodoTaskDialog extends StatelessWidget {
                       "task": _textTEController.text,
                       "Id": id,
                     };
-
                     DatabaseService().addOfficialTask(userTodo, id);
-
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(

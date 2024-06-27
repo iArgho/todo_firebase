@@ -25,7 +25,7 @@ class TaskList extends StatelessWidget {
                   tileColor: Colors.greenAccent.shade400,
                   title: Text(
                     "  " + docSnap["task"],
-                    style: TextStyle(fontWeight: FontWeight.w700),
+                    style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
                   trailing: IconButton(
                     icon: const Icon(

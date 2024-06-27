@@ -32,20 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.greenAccent.shade400,
-        onPressed: () {
-          openBox(context);
-        },
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
-          size: 40,
-        ),
-      ),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -95,6 +81,20 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.greenAccent.shade400,
+        onPressed: () {
+          openBox(context);
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 40,
         ),
       ),
     );
