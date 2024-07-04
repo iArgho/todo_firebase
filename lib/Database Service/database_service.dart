@@ -17,6 +17,13 @@ class DatabaseService {
         .set(userOfficialMap);
   }
 
+  Future removeTask(Map<String, dynamic> userOfficialMap, String id) async {
+    return await FirebaseFirestore.instance
+        .collection("Official")
+        .doc(id)
+        .delete();
+  }
+
   Future<Stream<QuerySnapshot>> getTask(String task) async {
     return FirebaseFirestore.instance.collection(task).snapshots();
   }
