@@ -1,63 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:todo_firebase/Database%20Service/database_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DeleteConfirmationDialog extends StatelessWidget {
   final String docId;
 
-  const DeleteConfirmationDialog({super.key, required this.docId});
+  const DeleteConfirmationDialog({
+    super.key,
+    required this.docId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Delete Confirmation'),
-      content: const Text('Are you sure you want to delete this item?'),
+      title: const Text('Delete Task'),
+      content: const Text('Are you sure you want to delete this task?'),
       actions: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: const Text(
-                  'Delete',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
+        TextButton(
+          child: const Text('Cancel'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        TextButton(
+          child: const Text('Delete'),
+          onPressed: () async {
+            try {
+              print('Attempting to delete document with ID: $docId');
+
+              CollectionReference tasks =
+                  FirebaseFirestore.instance.collection('tasks');
+
+              await tasks.doc(docId).delete();
+              // Log after successful deletion
+              print('Document with ID $docId deleted successfully');
+              Navigator.of(context).pop();
+            } catch (e) {
+              print('Error deleting document: $e');
+              Navigator.of(context).pop();
+            }
+          },
         ),
       ],
     );

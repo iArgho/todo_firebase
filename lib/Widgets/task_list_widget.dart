@@ -24,7 +24,7 @@ class TaskList extends StatelessWidget {
                 return ListTile(
                   tileColor: Colors.greenAccent.shade400,
                   title: Text(
-                    "  " + docSnap["task"],
+                    "   " + docSnap["task"],
                     style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
                   trailing: IconButton(
@@ -33,6 +33,7 @@ class TaskList extends StatelessWidget {
                       color: Colors.red,
                     ),
                     onPressed: () {
+                      print('Document ID to be deleted: ${docSnap.id}');
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
